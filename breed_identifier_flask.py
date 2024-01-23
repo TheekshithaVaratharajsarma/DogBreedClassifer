@@ -29,6 +29,8 @@ with open('background.jpg', 'rb') as image_file:
     base64_encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
     
 app = Flask(__name__)
+server = app.server
+
 dash_app = Dash(
     __name__, 
     server=app, 
