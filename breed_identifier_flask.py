@@ -19,7 +19,7 @@ from keras.preprocessing import image
 from keras.models import load_model
 import dash_bootstrap_components as dbc
 
-model_url = https://github.com/TheekshithaVaratharajsarma/DogBreedClassifer/releases/tag/v1.0.0
+model_url = "https://github.com/TheekshithaVaratharajsarma/DogBreedClassifer/releases/tag/v1.0.0"
 model_response = requests.get(model_url)
 
 if model_response.status_code == 200:
