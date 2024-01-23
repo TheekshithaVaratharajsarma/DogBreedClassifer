@@ -1,12 +1,9 @@
 dash==2.13.0
 dash_bootstrap_components==1.5.0
 Flask==2.2.2
-matplotlib==3.8.2
-matplotlib==3.7.1
+matplotlib>=3.0.0
 numpy==1.24.3
 pandas==1.5.3
-Pillow==10.1.0
-Pillow==9.4.0
-Pillow==10.2.0
+Pillow>=9.0.0,<11.0.0
 Requests==2.31.0
 gunicorn
