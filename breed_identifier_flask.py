@@ -411,8 +411,8 @@ def bg_image():
 def uploaded_image():
     return send_from_directory('.', 'uploaded_image.jpg')
 
-# Run the app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
+
 
 
