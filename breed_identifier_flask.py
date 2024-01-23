@@ -4,7 +4,6 @@ Created on Sat Jan 20 11:53:50 2024
 
 @author: user
 """
-
 import os
 import base64
 from io import BytesIO
@@ -19,13 +18,23 @@ from keras.preprocessing import image
 from keras.models import load_model
 import dash_bootstrap_components as dbc
 
-model_url = "https://github.com/TheekshithaVaratharajsarma/DogBreedClassifer/releases/tag/v1.0.0"
-model_response = requests.get(model_url)
+model_url = 'https://github.com/TheekshithaVaratharajsarma/DogBreedClassifer/releases/download/v1.0.0/dog_classifier_model.h5'
+model_path = 'dog_classifier_model.h5'
 
-if model_response.status_code == 200:
-    model = load_model(BytesIO(model_response.content))
-else:
-    raise Exception(f"Failed to download the model. Status code: {model_response.status_code}")
+# Check if the model file already exists
+if not os.path.exists(model_path):
+    model_response = requests.get(model_url)
+
+    if model_response.status_code == 200:
+        with open(model_path, 'wb') as f:
+            f.write(model_response.content)
+    else:
+        raise Exception(f"Failed to download the model. Status code: {model_response.status_code}")
+
+try:
+    model = load_model(model_path)
+except Exception as e:
+    raise Exception(f"Failed to load the model: {e}")
 
 with open('labels.txt', 'r') as f:
     labels = f.read().splitlines()
