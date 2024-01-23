@@ -19,10 +19,6 @@ from keras.preprocessing import image
 from keras.models import load_model
 import dash_bootstrap_components as dbc
 
-import requests
-from io import BytesIO
-from keras.models import load_model
-
 model_url = f'https://github.com/TheekshithaVaratharajsarma/DogBreedClassifer/releases/download/v1.0.0/dog_classifier_model.h5'
 model_response = requests.get(model_url)
 
