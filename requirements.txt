@@ -4,7 +4,7 @@ Flask==2.2.2
 matplotlib>=3.0.0
 numpy==1.24.3
 pandas==1.5.3
-keras==2.8.0
+keras
 Pillow>=9.0.0,<11.0.0
 Requests==2.31.0
 gunicorn
