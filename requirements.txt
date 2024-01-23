@@ -11,6 +11,6 @@ gunicorn
 tensorflow==2.14.0
 tensorflow_datasets>=4.9.4
 tensorflow_intel
-h5py==3.7.1
+h5py==3.6.0
 
 
