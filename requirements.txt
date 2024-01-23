@@ -16,3 +16,4 @@ tensorflow==2.14.0
 tensorflow_datasets==4.9.4
 tensorflow_datasets==1.2.0
 tensorflow_intel==2.14.0
+gunicorn
