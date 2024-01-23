@@ -19,7 +19,17 @@ from keras.preprocessing import image
 from keras.models import load_model
 import dash_bootstrap_components as dbc
 
-model = load_model('dog_classifier_model.h5')
+import requests
+from io import BytesIO
+from keras.models import load_model
+
+model_url = f'https://github.com/TheekshithaVaratharajsarma/DogBreedClassifer/releases/download/v1.0.0/dog_classifier_model.h5'
+model_response = requests.get(model_url)
+
+if model_response.status_code == 200:
+    model = load_model(BytesIO(model_response.content))
+else:
+    raise Exception(f"Failed to download the model. Status code: {model_response.status_code}")
 
 with open('labels.txt', 'r') as f:
     labels = f.read().splitlines()
