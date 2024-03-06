@@ -17,24 +17,19 @@ from dash.dependencies import MATCH, ALL
 from keras.preprocessing import image
 from keras.models import load_model
 import dash_bootstrap_components as dbc
+import tempfile
 
 model_url = 'https://github.com/TheekshithaVaratharajsarma/DogBreedClassifer/releases/download/v1.0.0/dog_classifier_model.h5'
-model_path = 'dog_classifier_model.h5'
 
-# Check if the model file already exists
-if not os.path.exists(model_path):
-    model_response = requests.get(model_url)
-
-    if model_response.status_code == 200:
-        with open(model_path, 'wb') as f:
-            f.write(model_response.content)
-    else:
-        raise Exception(f"Failed to download the model. Status code: {model_response.status_code}")
-
-try:
+model_response = requests.get(model_url)
+if model_response.status_code == 200:
+    with tempfile.NamedTemporaryFile(suffix=".h5", delete=False) as tmp_file:
+        tmp_file.write(model_response.content)
+        model_path = tmp_file.name
     model = load_model(model_path)
-except Exception as e:
-    raise Exception(f"Failed to load the model: {e}")
+    os.remove(model_path)  
+else:
+    raise Exception(f"Failed to download the model. Status code: {model_response.status_code}")
 
 with open('labels.txt', 'r') as f:
     labels = f.read().splitlines()
@@ -44,7 +39,6 @@ with open('background.jpg', 'rb') as image_file:
     base64_encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
     
 app = Flask(__name__)
-server = app.server
 
 dash_app = Dash(
     __name__, 
@@ -422,6 +416,3 @@ def uploaded_image():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
-
-
-
