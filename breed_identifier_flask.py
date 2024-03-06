@@ -38,7 +38,8 @@ with open('labels.txt', 'r') as f:
 with open('background.jpg', 'rb') as image_file:
     base64_encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
     
-app = Flask(__name__)
+application = Flask(__name__)
+app=application
 
 dash_app = Dash(
     __name__, 
@@ -415,4 +416,4 @@ def uploaded_image():
     return send_from_directory('.', 'uploaded_image.jpg')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    application.run(debug=True, host='0.0.0.0', port=5000)
