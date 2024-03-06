@@ -1,6 +1,8 @@
 # DogBreedClassifer
 CNN Models to identify dog breeds using the Stanford dogs dataset. (upto 120 breeds)
 
+![image](https://github.com/TheekshithaVaratharajsarma/DogBreedClassifer/assets/129731048/97a14978-a9f5-4af0-b8cf-121c8ce765a4)
+
 # Introduction:
 
 The task of predicting the breed of a dog from an input image is a challenging feat, especially when confronted with a diverse set of up to 120 dog breeds. To address this complexity, a range of convolutional neural network (CNN) architectures were trained and evaluated:
